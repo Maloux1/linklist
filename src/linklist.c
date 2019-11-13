@@ -16,7 +16,7 @@ list * createList(void * init(void *), void destroy(void *)){
 
 void freeList(list * head){
 	elem * element = head->first, *next=NULL;
-	if (head->destroy){
+	if (head->destroy){ // if is outside while for efficiency
 		while (element){
 			next = element->next;
 			head->destroy(element->data);
@@ -107,7 +107,8 @@ uint32_t sizeofList(list * head){
 	return head->size;
 }
 
-void removeElement(list * head, elem * element){
+elem * removeElement(list * head, elem * element){
+	elem * ret = element->next;
 	if (head->destroy){
 		head->destroy(element->data);
 	}
@@ -125,4 +126,5 @@ void removeElement(list * head, elem * element){
 	}
 	head->size--;
 	free(element);
+	return ret;
 }

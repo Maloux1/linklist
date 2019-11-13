@@ -26,6 +26,6 @@ void freeList(list *);
 int appendElement(list *, void *);
 int prependElement(list *, void *);
 uint32_t sizeofList(list *);
-void removeElement(list *, elem *);
+elem * removeElement(list *, elem *);
 
 #endif /* LINKLIST_H */
